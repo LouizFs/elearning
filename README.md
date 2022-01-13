@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# replace erails-learning with your own tag
+#docker buildx build --platform linux/amd64 -t erails-learning .
 
-Things you may want to cover:
+# make sure to use the name of your Heroku app
+#docker tag erails-learning registry.heroku.com/erails-learning/web
 
-* Ruby version
+# use docker push to push it to the Heroku registry
+#docker push registry.heroku.com/erails-learning/web
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# then use heroku release to activate
+#heroku container:release web -a erails-learning
