@@ -6,21 +6,29 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
-  web:
-    build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    volumes:
-      - .:/myapp
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
   webpacker:
     build: .
     env_file:
       - '.env.docker' 
-    command: ./bin/webpack-dev-server
+    command: docker/webpack.sh
     volumes:
-      - .:/myapp
+      - .:/myapp:cached
+      - ./bundle:/bundle:cached
+    tty: true #interactive container for bash comnand
+    stdin_open: true
     ports:
       - '3035:3035'
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp:cached
+      - ./bundle:/bundle:cached
+    tty: true
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - webpacker
+  
