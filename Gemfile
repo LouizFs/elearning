@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 
 gem "haml-rails", "~> 2.0"
+gem 'simple_form'
 
 
 group :development, :test do
