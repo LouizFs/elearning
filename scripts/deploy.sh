@@ -10,7 +10,7 @@ docker push registry.heroku.com/erails-learning/web
 
 heroku container:release web -a erails-learning
 
-
+heroku run rails db:migrate
 
 
 
