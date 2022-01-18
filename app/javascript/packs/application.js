@@ -12,5 +12,7 @@ require("jquery")
 import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
 import "@fortawesome/fontawesome-free/css/all.css";
+import "trix"
+import "@rails/actiontext"
 require("stylesheets/application.scss")
 

@@ -1,5 +1,8 @@
-%h1 New course
+%p
+.card.p-4
+  .card-header
+    %h1 New course
+  .card-body
+    = render 'form'
 
-= render 'form'
-
-= link_to 'Back', courses_path
+= link_to 'Back', courses_path, class: "btn btn-secondary m-3"

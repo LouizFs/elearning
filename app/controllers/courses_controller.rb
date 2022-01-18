@@ -3,7 +3,11 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
-    @courses = Course.all
+    @courses = if params[:title]
+      Course.where('title ILIKE ?',"%#{params[:title]}%")
+    else
+      Course.all
+    end
   end
 
   # GET /courses/1 or /courses/1.json
@@ -37,11 +41,13 @@ class CoursesController < ApplicationController
 
   # PATCH/PUT /courses/1 or /courses/1.json
   def update
+    @course.user = current_user
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to course_url(@course), notice: "Course was successfully updated." }
         format.json { render :show, status: :ok, location: @course }
       else
+        byebug
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end

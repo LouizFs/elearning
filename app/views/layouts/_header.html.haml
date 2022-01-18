@@ -1,22 +1,25 @@
 %nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   .container-fluid
-    %a.navbar-brand{:href => "#"} E-learning
+    %a.navbar-brand{:href => "/"} E-learning
     %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
       %span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
       %ul.navbar-nav.me-auto.mb-2.mb-lg-0
         %li.nav-item
-          %a.nav-link.active{"aria-current" => "page", :href => "#{root_path}"}
+          %a.nav-link{"aria-current" => "page", :href => "#{root_path}", class: "#{'active font-weight-bold' if current_page?(root_path)}"}
             .fa.fa-home &nbsp Home
         %li.nav-item
-          %a.nav-link{:href => "#{courses_path}"} 
+          %a.nav-link{:href => "#{courses_path}", class: "#{'active font-weight-bold' if current_page?(courses_path)}"}
             .fa.fa-book &nbsp Courses
         %li.nav-item
-          %a.nav-link{:href => "#{courses_path}"} 
-            .fa.fa-book &nbsp Courses 
+          %a.nav-link{:href => "#{new_course_path}", class: "#{'active font-weight-bold' if current_page?(new_course_path)}"} 
+            .fa.fa-plus &nbsp New Course
+      = form_tag(courses_path, method:  :get, class: 'd-flex') do
+        = text_field_tag :title, params[:name], autcomplete: 'off', placeholder: "Search", class: "form-controle me-2"
+        %button.btn.btn-outline-success{:type => "submit"} Search
+      %ul.navbar-nav
         %li.nav-item
           = button_to destroy_user_session_path, class: "nav-button nav-link" , :method => :delete, data: {:confirm => "You sure?" } do
             .fas.fa-sign-out-alt &nbsp Logout
-      %form.d-flex
-        %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-        %button.btn.btn-outline-success{:type => "submit"} Search
+
+

@@ -1,2 +1,54 @@
-%h1
-  Home
+.jumbotron
+  .display-4.p-3
+    Whats do you  want to learn today?
+  = form_tag(courses_path, method:  :get, class: 'd-flex p-3') do
+    = text_field_tag :title, params[:name], autcomplete: 'off', placeholder: "Search", class: "form-controle me-2"
+    %button.btn.btn-outline-success{:type => "submit"} Search
+
+.card-group
+  .card.card-body
+    %h1
+      .fa.fa-graduation-cap
+    = Course.count
+    online courses
+    .row
+    Explore a variety of fresh topics
+  .card.card-body
+    %h1
+      .fa.fa-chalkboard-teacher
+    = Course.distinct.count(:user_id)
+    expert instructors
+    .row
+    Find the right instructor for you
+  .card.card-body
+    %h1
+      .fa.fa-user-graduate
+    = User.count
+    active learners
+    .row
+    Join the knowledge sharing community
+  .card.card-body
+    %h1
+      .fa.fa-infinity
+    Lifetime access
+    .row
+    Learn on your schedule
+%hr
+  %h2 
+    Popular Courses
+  .row
+    - @courses.each do |course|
+      = render 'courses/course', course: course
+%hr
+  %h2
+    Top rated Courses
+  .row
+    - @courses.each do |course|
+      = render 'courses/course', course: course
+%hr
+  %h2
+    Latest Courses
+  .row
+    - @latest_courses.each do |course|
+      = render 'courses/course', course: course
+
