@@ -14,6 +14,9 @@
         %li.nav-item
           %a.nav-link{:href => "#{new_course_path}", class: "#{'active font-weight-bold' if current_page?(new_course_path)}"} 
             .fa.fa-plus &nbsp New Course
+        %li.nav-item
+          %a.nav-link{:href => "#{users_path}", class: "#{'active font-weight-bold' if current_page?(users_path)}"}
+            .fa.fa-user &nbsp Users
       = form_tag(courses_path, method:  :get, class: 'd-flex') do
         = text_field_tag :title, params[:name], autcomplete: 'off', placeholder: "Search", class: "form-controle me-2"
         %button.btn.btn-outline-success{:type => "submit"} Search

@@ -1,0 +1,23 @@
+.col-sm-4.mb-2.mt-2
+  .card
+    .card-header 
+      .fa.fa-user
+      = user.email
+    .card-body
+      Signed up
+      = time_ago_in_words(user.created_at)
+      ago
+    .card-footer
+      %p= "Sign_in count: #{user.sign_in_count}"
+      %p= "Current Sign in At: #{user.current_sign_in_at}"
+      %p= "Last Sign in At: #{user.last_sign_in_at}"
+      %p= "Current Sign In IP: #{user.current_sign_in_ip}"
+      %p= "Last Sign In IP: #{user.last_sign_in_ip}"
+    .card-footer
+      Confirmed email?
+      - if user.confirmed_at.present?
+        .badge.bg-primary
+          Yes 
+      - else
+        .badge.bg-danger
+          No
