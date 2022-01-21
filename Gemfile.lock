@@ -188,6 +188,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    ruby_http_client (3.5.3)
     ruby_parser (3.18.1)
       sexp_processor (~> 4.16)
     rubyzip (2.3.2)
@@ -206,6 +207,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    sendgrid-ruby (6.6.0)
+      ruby_http_client (~> 3.4)
     sexp_processor (4.16.0)
     simple_form (5.1.0)
       actionpack (>= 5.2)
@@ -270,6 +273,7 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.4)
   sass-rails (>= 6)
   selenium-webdriver
+  sendgrid-ruby
   simple_form
   spring
   turbolinks (~> 5)
