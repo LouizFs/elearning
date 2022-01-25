@@ -1,16 +1,27 @@
 #!/bin/bash
 
-echo "deploy the application..."
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  echo "deploy the application on linux"
 
-docker buildx build --platform linux/amd64 -t erails-learning . 
+  heroku container:login
 
-docker tag erails-learning registry.heroku.com/erails-learning/web
+  heroku container:push web
+  
+  heroku container:release web
+else
+  echo "deploy the application in Mac..."
 
-docker push registry.heroku.com/erails-learning/web
+  docker buildx build --platform linux/amd64 -t erails-learning . 
 
-heroku container:release web -a erails-learning
+  docker tag erails-learning registry.heroku.com/erails-learning/web
 
-heroku run rails db:migrate
+  docker push registry.heroku.com/erails-learning/web
+
+  heroku container:release web -a erails-learning
+
+  heroku run rails db:migrate
+fi
+
 
 
 
