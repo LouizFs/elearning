@@ -6,6 +6,6 @@ user = User.create!(email: 'admin@example.com', password:'admin@example.com', pa
   Course.create({
     title: Faker::Educator.course_name,
     description: Faker::TvShows::SouthPark.quote,
-    user = user
+    user: user
   })
 end
