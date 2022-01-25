@@ -3,8 +3,6 @@
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   echo "deploy the application on linux"
 
-  heroku container:login
-
   heroku container:push web
   
   heroku container:release web
